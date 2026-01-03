@@ -1,0 +1,23 @@
+<h3 class="title-products">Lista de Produtos</h3>
+<table class="table table-hover">
+    <thead>
+        <tr> 
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Estoque Inicial</th>
+        </tr>
+    </thead>
+    <tbody>
+         @for(product of listProducts; track product.id){
+            <tr>
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.stockInitial}}</td>
+            </tr>
+        }
+    </tbody> 
+</table>
