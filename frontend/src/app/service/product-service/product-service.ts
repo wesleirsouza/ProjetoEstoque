@@ -17,4 +17,8 @@ export class ProductService {
   public createProduct(product: Product){
     return this.http.post<Product>(this.apiUrl, product);
   }
+
+  public editProduct(product: Product){
+    return this.http.put<Product>(this.apiUrl, product);
+  }
 }

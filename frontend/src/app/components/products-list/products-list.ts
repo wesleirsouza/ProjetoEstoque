@@ -3,6 +3,7 @@ import { ProductService } from '../../service/product-service/product-service';
 import { Product } from '../../interface/product';
 import { CreateProduct } from '../create-product/create-product';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditProduct } from '../edit-product/edit-product';
 
 
 @Component({
@@ -39,4 +40,19 @@ export class ProductsList {
       this.ngOnInit();
     })
   }
+
+  openModalEdit(
+    product : Product, 
+    dialogSize: 'sm' | 'lg' | 'md' = 'md'
+  ){
+    const modalRef = this.modalService.open(EditProduct, {
+      size: dialogSize,
+      centered: false,
+    });
+    modalRef.componentInstance.product = product;
+    return modalRef.result.then(() => {
+      this.ngOnInit();
+    })
+  }
+
 }
