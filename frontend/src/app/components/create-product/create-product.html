@@ -73,7 +73,8 @@
   <button
     type="button"
     class="btn btn-primary btn-sm"
-    (click)="saveProduct()">
+    (click)="saveProduct()"
+    [disabled]="!validation()">
     Salvar
   </button>
 </div>

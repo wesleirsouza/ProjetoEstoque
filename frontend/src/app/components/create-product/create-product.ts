@@ -13,7 +13,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class CreateProduct {
 
   productService = inject(ProductService);
-   activeModal = inject(NgbActiveModal);
+  activeModal = inject(NgbActiveModal);
 
   newProduct : Product = {
     id: null,
@@ -29,6 +29,10 @@ export class CreateProduct {
         this.activeModal.close()
       }
     })
+  }
+
+  validation(){
+    return this.newProduct.name != "" && this.newProduct.category != "" && this.newProduct.description != ""; 
   }
 
 }
