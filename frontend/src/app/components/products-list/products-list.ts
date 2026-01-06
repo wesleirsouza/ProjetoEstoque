@@ -5,11 +5,12 @@ import { CreateProduct } from '../create-product/create-product';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditProduct } from '../edit-product/edit-product';
 import { DeleteProduct } from '../delete-product/delete-product';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-products-list',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './products-list.html',
   styleUrl: './products-list.scss',
 })
@@ -21,10 +22,14 @@ export class ProductsList {
   listProducts : Product[] = []; 
   modalService = inject(NgbModal);
 
+  inputfiltering: string = "";
+  filteredList : Product[] = [];
+
   ngOnInit(){
     this.productService.findAll().subscribe({
       next : (data : Product[]) => {
         this.listProducts = data;
+        this.filteredList = data;
         this.cdr.detectChanges();
       }
     });
@@ -70,5 +75,14 @@ export class ProductsList {
       this.ngOnInit();
     })
   }
+
+  filtering(){
+    this.filteredList = [];
+    for(let product of this.listProducts){
+      if(product.category.includes(this.inputfiltering)){
+        this.filteredList.push(product);
+      }
+    }
+  }  
 
 }
