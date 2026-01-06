@@ -4,6 +4,7 @@ import { Product } from '../../interface/product';
 import { CreateProduct } from '../create-product/create-product';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditProduct } from '../edit-product/edit-product';
+import { DeleteProduct } from '../delete-product/delete-product';
 
 
 @Component({
@@ -46,6 +47,21 @@ export class ProductsList {
     dialogSize: 'sm' | 'lg' | 'md' = 'md'
   ){
     const modalRef = this.modalService.open(EditProduct, {
+      size: dialogSize,
+      centered: false,
+    });
+    modalRef.componentInstance.product = product;
+    return modalRef.result.then(() => {
+      this.ngOnInit();
+    })
+  }
+  
+  
+  openModalDelete(
+    product : Product, 
+    dialogSize: 'sm' | 'lg' | 'md' = 'md'
+  ){
+    const modalRef = this.modalService.open(DeleteProduct, {
       size: dialogSize,
       centered: false,
     });
