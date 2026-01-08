@@ -1,0 +1,21 @@
+<h3 class="title-products">Lista de Fornecedor</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CNPJ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(supplier of this.listSupplier; track supplier.id){
+            <tr>
+                <td>{{supplier.id}}</td>
+                <td>{{supplier.name}}</td>
+                <td>{{supplier.cnpj}}</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
