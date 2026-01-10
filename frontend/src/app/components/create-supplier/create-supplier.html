@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h5 class="modal-title">Cadastro de Fornecedor</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()">
+  </button>
+</div>
+
+<div class="modal-body">
+  <form>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control form-control-sm"
+        [(ngModel)]="newSupplier.name"
+        name="name"
+        placeholder="Digite o nome do fornecedor"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">CNPJ</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="newSupplier.cnpj"
+        name="description"
+        placeholder="Digite o CNPJ do fornecedor"
+      />
+    </div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary btn-sm"
+    (click)="activeModal.dismiss()">
+    Cancelar
+  </button>
+
+  <button
+    type="button"
+    class="btn btn-primary btn-sm"
+    (click)="saveSupplier()"
+    [disabled]="!validation()">
+    Salvar
+  </button>
+</div>

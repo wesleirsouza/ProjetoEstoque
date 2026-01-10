@@ -13,5 +13,9 @@ export class SupplierService {
   public findAll(){
       return this.http.get<Supplier[]>(this.apiUrl);
     }
+
+  public createSupplier(supplier : Supplier){
+        return this.http.post<Supplier>(this.apiUrl, supplier);
+      }
   
 }
