@@ -14,6 +14,7 @@
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">CNPJ</th>
+            <th scope="col">Edição</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,17 @@
                 <td>{{supplier.id}}</td>
                 <td>{{supplier.name}}</td>
                 <td>{{supplier.cnpj}}</td>
+                <td>
+                    <button
+                     (click)="openModalEdit(supplier)" 
+                     type="button" 
+                     class="btn btn-warning" 
+                     data-toggle="button" 
+                     aria-pressed="false" 
+                     autocomplete="off">
+                     Editar
+                    </button>
+                </td>
             </tr>
         }
     </tbody>

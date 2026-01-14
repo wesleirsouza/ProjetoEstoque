@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <h5 class="modal-title">Edição de Fornecedor</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()">
+  </button>
+</div>
+
+<div class="modal-body">
+  <form>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.name"
+        name="name"
+        placeholder="Digite o nome do produto"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">CNPJ</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.cnpj"
+        name="description"
+        placeholder="Descrição do produto"
+      />
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary btn-sm"
+    (click)="activeModal.dismiss()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary btn-sm"
+    (click)="editSupplier()"
+    [disabled]="!validation()">
+    Salvar
+  </button>
+</div>

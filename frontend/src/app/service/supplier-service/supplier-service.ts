@@ -18,4 +18,12 @@ export class SupplierService {
         return this.http.post<Supplier>(this.apiUrl, supplier);
       }
   
-}
+  
+  public editSupplier(supplier : Supplier){
+      return this.http.put<Supplier>(this.apiUrl, supplier);
+    }
+  
+  public deleteSupplier(supplier : Supplier){
+      return this.http.delete(this.apiUrl +"/"+ supplier.id);
+    }
+  }

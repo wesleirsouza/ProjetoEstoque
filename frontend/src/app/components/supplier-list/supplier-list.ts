@@ -3,6 +3,7 @@ import { SupplierService } from '../../service/supplier-service/supplier-service
 import { Supplier } from '../../interface/supplier';
 import { CreateSupplier } from '../create-supplier/create-supplier';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditSupplier } from '../edit-supplier/edit-supplier';
 
 @Component({
   selector: 'app-supplier-list',
@@ -37,5 +38,18 @@ export class SupplierList {
         this.ngOnInit();
       })
     }
-
+    
+      openModalEdit(
+        supplier : Supplier, 
+        dialogSize: 'sm' | 'lg' | 'md' = 'md'
+      ){
+        const modalRef = this.modalService.open(EditSupplier, {
+          size: dialogSize,
+          centered: false,
+        });
+        modalRef.componentInstance.supplier = supplier;
+        return modalRef.result.then(() => {
+          this.ngOnInit();
+        })
+      }
 }
