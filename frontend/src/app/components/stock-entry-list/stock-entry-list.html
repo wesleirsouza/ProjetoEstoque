@@ -1,0 +1,29 @@
+<table class="table table-hover align-middle">
+   <thead>
+         <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Fornecedor</th>
+            <th scope="col">Data de Entrada</th>
+            <th scope="col">Produtos</th>
+         </tr>
+   </thead>
+   <tbody>
+        @for(stockEntry of listStockEntry; track stockEntry.id){
+          <tr>
+            <td>{{stockEntry.id}}</td>
+            <td>{{stockEntry.supplier.name}}</td>
+            <td>{{stockEntry.entryDate | date:'dd/MM/yyyy'}}</td>
+            <td>
+            @for(item of stockEntry.items; track item.id){
+               <div class="border rounded p-2 mb-2 bg-light">
+                  <div><strong>ID:</strong> {{item.id}}</div>
+                  <div><strong>Produto:</strong> {{item.product.name}}</div>
+                  <div><strong>Qtd:</strong> {{item.quantity}}</div>
+                  <div><strong>Preço:</strong> {{item.unitPrice | currency:'BRL'}}</div>
+               </div>
+            }
+            </td>
+          </tr>  
+        }
+   </tbody>
+</table>
