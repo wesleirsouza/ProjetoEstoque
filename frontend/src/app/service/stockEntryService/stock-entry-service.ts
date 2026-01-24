@@ -13,4 +13,8 @@ export class StockEntryService {
   public findAll(){
     return this.http.get<StockEntry[]>(this.apiUrl);
   } 
+
+  createStock(stockEntry : StockEntry){
+    return this.http.post<StockEntry>(this.apiUrl + "/" + stockEntry.supplier.id, stockEntry.items)
+  }
 }

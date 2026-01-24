@@ -1,3 +1,12 @@
+<button 
+   type="button" 
+   class="btn btn-primary me-2 mb-1 m-1" 
+   data-toggle="button" 
+   aria-pressed="false" 
+   autocomplete="off"
+   (click)="openModalCreate()">
+    Cadastrar entrada de estoque
+   </button>
 <table class="table table-hover align-middle">
    <thead>
          <tr>
@@ -17,7 +26,7 @@
             @for(item of stockEntry.items; track item.id){
                <div class="border rounded p-2 mb-2 bg-light">
                   <div><strong>ID:</strong> {{item.id}}</div>
-                  <div><strong>Produto:</strong> {{item.product.name}}</div>
+                  <div><strong>Produto:</strong> {{item.product?.name}}</div>
                   <div><strong>Qtd:</strong> {{item.quantity}}</div>
                   <div><strong>Preço:</strong> {{item.unitPrice | currency:'BRL'}}</div>
                </div>

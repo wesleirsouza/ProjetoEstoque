@@ -1,0 +1,39 @@
+<div class="d-flex ms-2">
+    <section class="d-flex flex-column">
+        <div class="mb-3">
+            <label>Selecione o fornecedor</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="newStock.supplier" >
+            @for(supplier of listSupplier; track supplier){
+                <option [ngValue]="supplier">{{supplier.name}} {{supplier.cnpj}}</option>
+            }
+            </select>
+            <label>Selecione o produto</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedProduct" >
+                @for(product of listProdut; track product){
+                    <option [ngValue]="product">{{product.name}} {{product.category}} {{product.description}}</option>
+             }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Digite a quantidade</label>
+            <input type="number" class="form-control form-control-sm" [(ngModel)]="amountProduct">
+            <label>Digite o valor</label>
+            <input type="number" class="form-control form-control-sm" [(ngModel)]="value"><br>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="includeStockEntryItem()">Adicionar item</button>
+            <button  type="button" class="btn btn-primary btn-sm" (click)="saveStockEntry()">Salvar</button>
+        </div>
+    </section>
+    <section>
+        <div class="modal-body">
+            <div class="d-flex justify-content-end">
+                <ul class="list-group" style="width: 300px;">
+                    @for(item of newStock.items; track item.product?.id){
+                        <li class="list-group-item"> produto: {{item.product?.name}} quantidade: {{item.quantity}} <br> preço: {{item.unitPrice}} </li>
+                     }
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

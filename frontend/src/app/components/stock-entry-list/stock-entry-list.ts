@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { StockEntry } from '../../interface/stock-entry';
 import { StockEntryService } from '../../service/stockEntryService/stock-entry-service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateStockEntry } from '../create-stock-entry/create-stock-entry';
 
 @Component({
   selector: 'app-stock-entry-list',
@@ -14,6 +16,7 @@ export class StockEntryList {
 
   listStockEntry : StockEntry[] = [];
   stockEntryListService = inject(StockEntryService);
+  modalService = inject(NgbModal);
 
   ngOnInit(){
     this.stockEntryListService.findAll().subscribe({
@@ -23,4 +26,16 @@ export class StockEntryList {
       }
     })
   }
+
+  openModalCreate(
+      dialogSize: 'sm' | 'lg' | 'md' = 'lg'
+    ){
+      const modalRef = this.modalService.open(CreateStockEntry, {
+        size: dialogSize,
+        centered: false,
+      });
+      return modalRef.result.then(() => {
+        this.ngOnInit();
+      })
+    }
 }
