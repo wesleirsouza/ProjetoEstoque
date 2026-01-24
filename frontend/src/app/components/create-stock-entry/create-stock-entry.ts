@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { StockEntryService } from '../../service/stockEntryService/stock-entry-service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { StockEntry } from '../../interface/stock-entry';
 import { Supplier } from '../../interface/supplier';
 import { SupplierService } from '../../service/supplier-service/supplier-service';
@@ -11,7 +11,7 @@ import { StockEntryItem } from '../../interface/stock-entry-item';
 
 @Component({
   selector: 'app-create-stock-entry',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbAlert],
   templateUrl: './create-stock-entry.html',
   styleUrl: './create-stock-entry.scss',
 })
@@ -49,6 +49,7 @@ export class CreateStockEntry {
   listProdut : Product[]= [];
   amountProduct : number | null = null; 
   value : number | null = null;
+  showAlert = false;
 
   ngOnInit(){
     this.supplierService.findAll().subscribe({
@@ -66,11 +67,15 @@ export class CreateStockEntry {
   }
   
    saveStockEntry(){
+    if(this.newStock.items.length > 0){
       this.stockEntryService.createStock(this.newStock).subscribe({
         next: (data : StockEntry) => {
           this.activeModal.close()
         }
       })
+    }else{
+      this.showAlertMessage();
+    }
     }
   
     validation(){
@@ -78,12 +83,28 @@ export class CreateStockEntry {
     }
 
     includeStockEntryItem(){
-      let stockEntryItem : StockEntryItem = {
-        id: null,
-        product: this.selectedProduct,
-        quantity: this.amountProduct,
-        unitPrice: this.value
+      if(this.selectedProduct != null && this.amountProduct != null && this.value != null){
+        let stockEntryItem : StockEntryItem = {
+          id: null,
+          product: this.selectedProduct,
+          quantity: this.amountProduct,
+          unitPrice: this.value
+        }
+        this.newStock.items.push(stockEntryItem);
+      }else{
+        this.showAlertMessage();
       }
-      this.newStock.items.push(stockEntryItem);
     }
+
+    showAlertMessage() {
+    this.showAlert = true;
+
+    setTimeout(() => {
+      this.closeAlert();
+    }, 3000);
   }
+
+  closeAlert() {
+    this.showAlert = false;
+  }
+}
