@@ -4,6 +4,7 @@ import { StockEntryService } from '../../service/stockEntryService/stock-entry-s
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateStockEntry } from '../create-stock-entry/create-stock-entry';
+import { DeleteStockEntry } from '../delete-stock-entry/delete-stock-entry';
 
 @Component({
   selector: 'app-stock-entry-list',
@@ -34,6 +35,20 @@ export class StockEntryList {
         size: dialogSize,
         centered: false,
       });
+      return modalRef.result.then(() => {
+        this.ngOnInit();
+      })
+    }
+
+  openModalDelete(
+      stockEntry : StockEntry, 
+      dialogSize: 'sm' | 'lg' | 'md' = 'md'
+    ){
+      const modalRef = this.modalService.open(DeleteStockEntry, {
+        size: dialogSize,
+        centered: false,
+      });
+      modalRef.componentInstance.stockEntry = stockEntry;
       return modalRef.result.then(() => {
         this.ngOnInit();
       })
