@@ -4,16 +4,7 @@
             <label>
                 Selecione o fornecedor
             </label>
-            <select 
-                class="form-select" 
-                aria-label="Default select example" 
-                [(ngModel)]="newStock.supplier" >
-                    @for(supplier of listSupplier; track supplier){
-                        <option [ngValue]="supplier">
-                            {{supplier.name}} {{supplier.cnpj}}
-                        </option>
-                    }
-            </select>
+            <input [value]="stockEntry.supplier.name" disabled>
             <label>Selecione o produto</label>
             <select 
                 class="form-select" ,
@@ -57,7 +48,7 @@
         <div class="modal-body">
             <div class="d-flex justify-content-end">
                 <ul class="list-group" style="width: 300px;">
-                    @for(item of newStock.items; track item.product?.id){
+                    @for(item of stockEntry.items; track item.product?.id){
                         <li 
                         class="list-group-item"> 
                         produto: {{item.product?.name}} quantidade: {{item.quantity}} <br> preço: {{item.unitPrice}} 

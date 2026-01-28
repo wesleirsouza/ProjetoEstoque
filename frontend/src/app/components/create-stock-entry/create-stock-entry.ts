@@ -46,7 +46,7 @@ export class CreateStockEntry {
   }
 
   listSupplier : Supplier[] = [];
-  listProdut : Product[]= [];
+  listProduct : Product[]= [];
   amountProduct : number | null = null; 
   value : number | null = null;
   showAlert = false;
@@ -60,7 +60,7 @@ export class CreateStockEntry {
     });
     this.productService.findAll().subscribe({
       next : (data : Product[]) =>{
-        this.listProdut = data;
+        this.listProduct = data;
         this.cdr.detectChanges();
       }
     })

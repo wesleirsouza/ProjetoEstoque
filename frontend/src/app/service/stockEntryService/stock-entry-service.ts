@@ -21,4 +21,8 @@ export class StockEntryService {
   deleteStock(stockEntry : StockEntry){
     return this.http.delete<StockEntry>(this.apiUrl + "/" + stockEntry.id)
   }
+
+  editStock(stockEntry : StockEntry){
+    return this.http.put<StockEntry>(this.apiUrl + "/" + stockEntry.id, stockEntry.items)
+  }
 }
