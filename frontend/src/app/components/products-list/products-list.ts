@@ -79,7 +79,7 @@ export class ProductsList {
   filtering(){
     this.filteredList = [];
     for(let product of this.listProducts){
-      if(product.category.includes(this.inputfiltering)){
+      if(product.category.toLowerCase().includes(this.inputfiltering.toLowerCase())){
         this.filteredList.push(product);
       }
     }

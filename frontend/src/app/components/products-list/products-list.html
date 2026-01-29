@@ -9,10 +9,10 @@
     Cadastrar Produto
 </button>
 <input 
+    [(ngModel)]="inputfiltering"
     (ngModelChange)="filtering()"
     type="text" 
     class="form-control form-control-sm m-1"
-    [(ngModel)]="inputfiltering"
     placeholder="Digite aqui para filtrar a lista">
 <table class="table table-hover">
     <thead>
