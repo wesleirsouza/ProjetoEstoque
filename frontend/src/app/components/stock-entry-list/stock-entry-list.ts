@@ -67,5 +67,6 @@ export class StockEntryList {
       return modalRef.result.then(() => {
         this.ngOnInit();
       })
-    }  
+    } 
+    
 }

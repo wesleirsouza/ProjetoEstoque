@@ -85,4 +85,4 @@ export class EditStockEntry {
     closeAlert() {
       this.showAlert = false;
     }
-    }  
+  }  

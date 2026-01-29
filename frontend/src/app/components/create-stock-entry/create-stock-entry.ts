@@ -50,7 +50,7 @@ export class CreateStockEntry {
   amountProduct : number | null = null; 
   value : number | null = null;
   showAlert = false;
-
+  
   ngOnInit(){
     this.supplierService.findAll().subscribe({
       next : (data : Supplier[]) => {
@@ -104,7 +104,11 @@ export class CreateStockEntry {
     }, 3000);
   }
 
-  closeAlert() {
+    closeAlert() {
     this.showAlert = false;
   }
+
+  removeTempItem(item: StockEntryItem) {
+  this.newStock.items = this.newStock.items.filter(i => i !== item);
+}
 }

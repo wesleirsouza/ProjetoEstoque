@@ -61,6 +61,12 @@
                         <li 
                         class="list-group-item"> 
                         produto: {{item.product?.name}} quantidade: {{item.quantity}} <br> preço: {{item.unitPrice}} 
+                        <br><button
+                                type="button" 
+                                class="btn btn-danger"
+                                (click)="removeTempItem(item)">
+                                 Remover
+                        </button>
                     </li>
                      }
                 </ul>
