@@ -85,4 +85,8 @@ export class EditStockEntry {
     closeAlert() {
       this.showAlert = false;
     }
+
+    removeTempItem(item: StockEntryItem) {
+  this.stockEntry.items = this.stockEntry.items.filter(i => i !== item);
+}
   }  
